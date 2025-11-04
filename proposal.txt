@@ -1,0 +1,23 @@
+Predicting popularity of an anime series based on the score
+
+Libraries needed: 
+Matplotlib
+Scikit-learn
+Pandas 
+
+Research question to what extent can you predict an anime’s popularity based on its score?
+
+Data: https://www.kaggle.com/datasets/alexeiluchian/mal-anime-dataset 
+
+
+Steps: 
+1.	Load and clean data
+2.	Split data
+a.	80% will be used as a training set
+b.	20% will be used as unseen to test the model
+3.	Do a linear regression
+4.	Evaluate and interpret results
+
+
+Proposal:
+The goal of this project is to predict whether an anime’s popularity can be predicted based on its score (how good the viewers rate it to be). The project will use a supervised machine learning technique, and I will create a linear regression model to visualize how popularity and scores are connected. I will use pandas to do any necessary cleaning of the data and to access the data, I will use scikit-learn to use machine learning technique and I will use matplotlib for any plotting. Additionally, I might do another regression analysis to try to predict whether the amount of episodes predicts popularity. If time is remaining, I will also research whether genres predict an anime’s popularity, this will be done with TF-IDF. 
