@@ -10,6 +10,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error
 from sklearn.metrics import r2_score
+from sklearn.tree import DecisionTreeRegressor, plot_tree
 
 #read data
 df = pd.read_csv("anime_dataset.csv")
@@ -67,9 +68,9 @@ rss = np.sum(residuals**2)
 
 # get the number of rows
 print(X_train_score) # there are 837 rows
-df = 837-2
+degrees_of_freedom = 837-2
 
-sigma_squared = rss/df
+sigma_squared = rss/degrees_of_freedom
 
 x = X_train_score['score']
 
@@ -83,9 +84,14 @@ print('SE:', SE_b1)
 
 #Evaluating the model
 mse_score = mean_squared_error(y_test_score, y_pred_score)
-r2_score = r2_score(y_test_score, y_pred_score)
+r2 = r2_score(y_test_score, y_pred_score)
 print('mse', mse_score)
-print('r2', r2_score)
+print('r2', r2)
+
+#Adjusted R2
+n2 = len(y_pred_score)
+adj_r2_score = 1 - (1 - r2) * (n2 - 1) / (n2 - 1 - 1)
+print('r2 adjusted', adj_r2_score) # result is 0.022
 
 #Double sided t-test
 
@@ -97,3 +103,13 @@ t_stat = b1 / SE_b1
 # get the p value
 p = 2*(1 - stats.t.cdf(abs(t_stat), df = 835))
 print('pvalue', p)
+
+# decision tree
+tree_model = DecisionTreeRegressor(random_state = 10, max_depth = 3)
+
+tree_model.fit(X_train_score, y_train_score)
+
+y_tree = tree_model.predict(X_test_score)
+
+plot_tree(tree_model, feature_names = ["score"])
+plt.show()
