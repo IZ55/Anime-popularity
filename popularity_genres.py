@@ -43,6 +43,7 @@ model = LinearRegression()
 model.fit(X_train_if, y_train_if)
 y_pred_if = model.predict(X_test_if)
 
+print('Coefficients:', model.coef_)
 
 # #Evaluating the model
 mse_score_if = mean_squared_error(y_test_if, y_pred_if)
@@ -50,6 +51,10 @@ r2_score_if = r2_score(y_test_if, y_pred_if)
 print('mse', mse_score_if) # result is 9.099
 print('r2', r2_score_if) # result is 0.004
 
+#Adjusted R2
+n2 = len(y_pred_if)
+adj_r2_if = 1 - (1 - r2_score_if) * (n2 - 1) / (n2 - 95 - 1)
+print('r2 adjusted', adj_r2_if) # result is -0.824
 
 
 #Clustering
@@ -85,7 +90,7 @@ from scipy.stats import f_oneway
 
 # get the popularity values for each cluster
 groups_pop = df.groupby("cluster")["pop_mod"].apply(list).tolist()
-print('group_pop', groups_pop)
+# print('group_pop', groups_pop)
 
 f_stat, p_value = f_oneway(groups_pop[0], groups_pop[1], groups_pop[2])
 print('F', f_stat)
