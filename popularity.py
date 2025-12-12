@@ -85,8 +85,8 @@ print('SE:', SE_b1)
 #Evaluating the model
 mse_score = mean_squared_error(y_test_score, y_pred_score)
 r2 = r2_score(y_test_score, y_pred_score)
-print('mse', mse_score)
-print('r2', r2)
+print('mse', mse_score) # 8.896
+print('r2', r2) # 0.027
 
 #Adjusted R2
 n2 = len(y_pred_score)
